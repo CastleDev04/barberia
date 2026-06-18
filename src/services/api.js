@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { authService } from './auth.service';
 
-const API_URL = 'https://backend-barberia-4rzl.onrender.com' || 'http://localhost:3000/api';
+const API_URL = 'https://backend-barberia-4rzl.onrender.com/api' || 'http://localhost:3000/api';
 
 const api = axios.create({
   baseURL: API_URL,
