@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dim: #8A6A1F;
+    --obsidian: #0D0C0A;
+    --obsidian-mid: #1A1814;
+    --obsidian-card: #141210;
+    --text-primary: #F5F1EB;
+    --text-secondary: #A89F8C;
+    --text-muted: #6B6357;
+    --border: rgba(201,168,76,0.15);
+    --border-hover: rgba(201,168,76,0.4);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--obsidian);
+    color: var(--text-primary);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: rgba(201,168,76,0.3);
+    color: var(--gold-light);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--obsidian-mid);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--gold-dim);
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .font-display { font-family: 'Playfair Display', Georgia, serif; }
+  .font-body    { font-family: 'DM Sans', system-ui, sans-serif; }
+  .font-mono    { font-family: 'JetBrains Mono', monospace; }
+
+  .text-gold         { color: var(--gold); }
+  .text-gold-light   { color: var(--gold-light); }
+  .text-muted-custom { color: var(--text-secondary); }
+
+  .bg-obsidian      { background-color: var(--obsidian); }
+  .bg-obsidian-mid  { background-color: var(--obsidian-mid); }
+  .bg-obsidian-card { background-color: var(--obsidian-card); }
+
+  .border-gold-subtle { border-color: var(--border); }
+  .border-gold-hover  { border-color: var(--border-hover); }
+
+  /* Gold gradient text */
+  .gold-gradient-text {
+    background: linear-gradient(135deg, #C9A84C 0%, #E8C96A 50%, #C9A84C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Noise texture overlay */
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.04;
+  }
+
+  /* Gold line divider */
+  .gold-divider {
+    width: 3rem;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* Animated gold border card */
+  .card-premium {
+    position: relative;
+    background: var(--obsidian-card);
+    border: 1px solid var(--border);
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card-premium:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(201,168,76,0.06);
+  }
+
+  /* Input styles */
+  .input-premium {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: var(--text-primary);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    outline: none;
+  }
+  .input-premium:focus {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.04);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+  }
+  .input-premium::placeholder {
+    color: var(--text-muted);
+  }
+
+  /* Stagger animation delays */
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-600 { animation-delay: 0.6s; }
+
+  /* Initially hidden for animation */
+  .animate-on-load {
+    opacity: 0;
+  }
+  .animate-on-load.visible {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+}
+
+/* Scissor deco line */
+.deco-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 50%, transparent 100%);
+}
